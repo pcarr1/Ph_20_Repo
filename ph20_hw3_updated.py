@@ -172,6 +172,7 @@ def symplecticEuler(h):
 
 def main():
     h = 0.1
+    print('Explicit Euler Method')
     xListE, vListE, tListE = explicitEuler(h)
     plotPositionAndVelocity(xListE, vListE, tListE, 'explicit')
     xErrorListE, vErrorListE = getEulerError(xListE, vListE, tListE)
@@ -180,6 +181,7 @@ def main():
     plotTotalEnergy(xListE, vListE, tListE, 'explicit')
 
     h = 0.1
+    print('Implicit Euler Method')
     xListI, vListI, tListI = implicitEuler(h)
     plotPositionAndVelocity(xListI, vListI, tListI, 'implicit')
     xErrorListI, vErrorListI = getEulerError(xListI, vListI, tListI)
@@ -190,6 +192,7 @@ def main():
     phaseSpacePlot(xListE, vListE, 'explicit')
     phaseSpacePlot(xListI, vListI, 'implicit')
     h = 0.1
+    print('Symplectic Euler Method')
     xListS, vListS, tListS = symplecticEuler(h)
     plotPositionAndVelocity(xListS, vListS, tListS, 'symplectic')
     phaseSpacePlot(xListS, vListS, 'symplectic')
