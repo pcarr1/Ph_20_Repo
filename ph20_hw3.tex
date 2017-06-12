@@ -1,0 +1,194 @@
+% This is how you make a comment
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+% For pictures
+\usepackage{graphicx}
+% For math
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\usepackage{float}
+\usepackage[font=small,labelfont=bf]{caption}
+
+\usepackage[a4paper, total={6in, 9in}]{geometry}
+
+\title{Ph 20 Assignment 2}
+\author{Philip Carr\\Friday Section}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Part 1}
+\subsection*{1. The numerical spring modelled using the explicit Euler method}
+Note: for all plots, $h = 0.1$, and $N = 500$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{plots/figure_1.png}
+\captionof{figure}{Plot of x(t) for the explicit Euler method.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{plots/figure_2.png}
+\captionof{figure}{Plot of v(t) for the explicit Euler method.}
+\end{figure}
+
+\subsection*{2. Analytic solution to motion of a mass on a spring}
+From Newton's second law,
+\[ F = ma = m\dfrac{dv}{dt} = m\dfrac{d^2 x}{dt^2}. \]
+The force that acts on a mass on a spring is
+\[ F = ma = -kx. \]
+Therefore,
+\[ F = ma = -kx = m\dfrac{d^2 x}{dt^2} \implies m\dfrac{d^2 x}{dt^2} + kx = 0 \implies \dfrac{d^2 x}{dt^2} + \dfrac{k}{m}x = 0. \]
+Thus, this is system can be represented as simple harmonic motion, where the solution to this equation is
+\[ x(t) = A\text{cos}(\omega t), \]
+where $A$ is the amplitude of the motion of the mass, and $\omega$ is the frequency of oscillation. $\omega = \sqrt{\dfrac{k}{m}}$. Let $A$ = 1, and $\dfrac{k}{m} = 1$ and thus $\omega = 1$. Thus, the solution for $x(t)$ becomes
+\[ x(t) = \text{cos}(t). \]
+Thus,
+\[ v(t) = -\text{sin}(t) \]
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{plots/figure_3.png}
+\captionof{figure}{Plot of global error of $x(t)$ for the explicit Euler method.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{plots/figure_4.png}
+\captionof{figure}{Plot of global error of $v(t)$ for the explicit Euler method.}
+\end{figure}
+
+\subsection*{3. Truncation error}
+As shown in the two plots below, truncation error is proportional to $h$ for reasonably small values of $h$.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{plots/figure_5.png}
+\captionof{figure}{Plot of truncation error of $x(t)$ for the explicit Euler method for $h = h_0,\; h_0/2,\; h_0/4,\; h_0/8,\; h_0/16$, where $h_0 = 0.1$.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{plots/figure_6.png}
+\captionof{figure}{Plot of truncation error of $v(t)$ for the explicit Euler method for $h = h_0,\; h_0/2,\; h_0/4,\; h_0/8,\; h_0/16$, where $h_0 = 0.1$.}
+\end{figure}
+
+\subsection*{4. Total energy}
+Below is a plot of the normalized total energy $E = x^2 + v^2$ of the explicit Euler method as a function of time. The long-range trend for $E$ is that $E$ increases as time increases. The total energy and the absolute value of the global errors both increase as time goes on.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{plots/figure_7.png}
+\captionof{figure}{Plot of normalized total energy $E(t)$ for the explicit Euler method.}
+\end{figure}
+
+\subsection*{5. Implicit Euler method}
+The implicit Euler method uses the system of equations
+\[ \begin{bmatrix}
+1 & -h\\
+h & 1
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+x_{i+1}\\
+v_{i+1}
+\end{bmatrix}
+=
+\begin{bmatrix}
+x_{i}\\
+v_{i}
+\end{bmatrix} \]
+\[ \implies x_{i+1} = x_i - hv_{i+1},\; v_{i+1} = v_i + hx_{i+1} \]
+\[ \implies x_{i+1} = x_i - h(v_i + hx_{i+1}) \implies x_{i+1} = x_i - hv_i - h^2 x_{i+1} \implies (1 + h^2)x_{i+1} = x_i - hv_i \]
+\[ \implies x_{i+1} = \dfrac{x_i - hv_i}{1 + h^2}. \]
+\[ v_{i+1} = v_i + hx_{i+1} = v_i + h(x_i - hv_{i+1}) \implies v_{i+1} = v_i + hx_i - h^2 v_{i+1} \implies (1 + h^2)v_{i+1} = v_i + hx_i \]
+\[ \implies v_{i+1} = \dfrac{v_i + hx_i}{1 + h^2}. \]
+Below are plots for global errors in $x(t)$ and $v(t)$ for the implicit Euler method. For the implicit Euler method, the global error in $x(t)$ is greater in magnitude than that of the explicit Euler method for $t$ close to 0, but increases in magnitude slower than the explicit Euler method. The global error of $v(t)$ for the implicit Euler method is greater in magnitude than that of the explicit Euler method for $t$ close to 0, and then the magnitude of the implicit Euler method decreases instead of increases as seen in the explicit Euler method. The total normalized energy of the system using the implicit method decreases instead of increases as it does for the explicit Euler method.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{plots/figure_8.png}
+\captionof{figure}{Plot of x(t) for the implicit Euler method.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{plots/figure_9.png}
+\captionof{figure}{Plot of v(t) for the implicit Euler method.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{plots/figure_10.png}
+\captionof{figure}{Plot of global error of $x(t)$ for the implicit Euler method.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{plots/figure_11.png}
+\captionof{figure}{Plot of global error of $v(t)$ for the implicit Euler method.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{plots/figure_12.png}
+\captionof{figure}{Plot of truncation error of $x(t)$ for the implicit Euler method for $h = h_0,\; h_0/2,\; h_0/4,\; h_0/8,\; h_0/16$, where $h_0 = 0.1$.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{plots/figure_13.png}
+\captionof{figure}{Plot of truncation error of $v(t)$ for the implicit Euler method for $h = h_0,\; h_0/2,\; h_0/4,\; h_0/8,\; h_0/16,\;$, where $h_0 = 0.1$.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{plots/figure_14.png}
+\captionof{figure}{Plot of normalized total energy $E(t)$ for the explicit Euler method.}
+\end{figure}
+
+\section*{Part 2}
+
+\subsection*{1. Phase-space geometry of trajectories produced by the explicit and implicit Euler methods.}
+Below are plots of the phase space geometries of the explicit and implicit Euler methods.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{plots/figure_15.png}
+\captionof{figure}{Plot of the phase space geometry for the explicit Euler method.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{plots/figure_16.png}
+\captionof{figure}{Plot of the phase space geometry for the implicit Euler method.}
+\end{figure}
+
+\subsection*{2. Symplectic Euler method phase-space geometry}
+Below are plots of the phase-space geometry of the symplectic method alone and a plot comparing the phase-space geometries of all three Euler methods at once.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{plots/figure_19.png}
+\captionof{figure}{Plot of phase space geometry for the symplectic Euler method.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{plots/figure_20.png}
+\captionof{figure}{Plot of phase space geometries for the explicit, implicit, and symplectic Euler methods.}
+\end{figure}
+
+\subsection*{3. Total energy obtained with the symplectic Euler method}
+Below is a plot of the total energy obtained with the symplectic Euler method. $h = 0.1$, and $N = 500$. The deviations from the constant value of total energy are sinusoidal in nature. This evolution relates to what is seen in phase space in the slight distortion of the phase space geometry of the symplectic Euler method from being a perfect circle.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{plots/figure_21.png}
+\captionof{figure}{Plot of normalized total energy $E(t)$ for the symplectic Euler method.}
+\end{figure}
+
+\end{document}
