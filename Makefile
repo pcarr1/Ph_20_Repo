@@ -1,7 +1,9 @@
-generate_assignment_3 : ph20_hw4.tex plot_1.png plot_2.png plot_3.png \
-plot_4.png plot_5.png plot_6.png plot_7.png plot_8.png plot_9.png plot_10.png \
-plot_11.png plot_12.png plot_13.png plot_14.png plot_15.png plot_16.png \
-plot_17.png plot_18.png plot_19.png
+generate_assignment_3 : ph20_hw4.tex plots/figure_1.png plots/figure_2.png \
+plots/figure_3.png plots/figure_4.png plots/figure_5.png plots/figure_6.png \
+plots/figure_7.png plots/figure_8.png plots/figure_9.png plots/figure_10.png \
+plots/figure_11.png plots/figure_12.png plots/figure_13.png \
+plots/figure_14.png plots/figure_15.png plots/figure_16.png \
+plots/figure_17.png plots/figure_18.png plots/figure_19.png
 	touch commandLineOutput.txt >> commandLineOutput.txt
 	git log > ph_20_assignment_4_git_log.txt
 	cp Makefile makefile_source_code.txt >> commandLineOutput.txt
